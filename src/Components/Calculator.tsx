@@ -15,36 +15,54 @@ function CalcButton({ buttoninfo, onClick }: CalcButtonProps) {
 
 
 function Calculator() {
-    const startingState =  {
+    const startingState = {
         allInput: "",
+        prevValue: "",
+        prevRepeatable: false,
+        prevOperand: false
     }
     const [state, setState] = useState(startingState);
 
     function onClick(value: string) {
+        const unrepeatables = ["0", "."];
+        const operands = ["-", "+", "*", "/"];
+        let repeatable = true;
+        let isOperand = operands.some(el => el === value);
+
+        //Conditions we need to check
+        //Cannot have two operands in a row
+        //Decimal must have a value after
+        //
+        if (state.prevOperand && isOperand) return;
         switch (value) {
             case "_":
-                break;
+                setState(startingState)
+                return;
             case "=":
-                break;
             case "-":
-                break;
             case "+":
-                break;
             case "*":
-                break;
             case "/":
-                break;
-            default:
+            case "0":
+            case ".":
+                if (!state.prevRepeatable && state.prevValue === value) return;
+                repeatable = false;
                 break;
         }
+        setState(prev => {
+            return {
+                allInput: prev.allInput + value,
+                prevValue: value,
+                prevRepeatable: repeatable,
+                prevOperand: isOperand
+            }
+        })
     }
 
     return (
         <div id="calculator">
             <div id="calc-screen">
-                <div>
-                    past inputs
-                </div>
+                <div>{state.allInput}</div>
                 <div>
                     current input
                 </div>
