@@ -101,6 +101,7 @@ h1 {
   align-items: center;
   padding-right: 0.5em;
   border: 3px solid;
+  overflow: scroll;
 }
 #calc-screen :first-child {
   height: 2rem;
@@ -110,6 +111,7 @@ h1 {
 }
 #calc-screen :last-child {
   height: 3rem;
+  font-size: 1.5em;
   border-top: 2px solid;
   border-bottom-left-radius: 0.4rem;
   border-bottom-right-radius: 0.4rem;

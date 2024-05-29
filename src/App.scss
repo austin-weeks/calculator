@@ -110,6 +110,7 @@ $radius: 0.4rem;
         align-items: center;
         padding-right: 0.5em;
         border: 3px solid;
+        overflow: scroll;
     }
     :first-child {
         height: 2rem;
@@ -119,6 +120,7 @@ $radius: 0.4rem;
     }
     :last-child {
         height: 3rem;
+        font-size: 1.5em;
         border-top: 2px solid;
         border-bottom-left-radius: $radius;
         border-bottom-right-radius: $radius;
