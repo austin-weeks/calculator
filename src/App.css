@@ -29,6 +29,21 @@ html {
     font-size: 12px;
   }
 }
+@media only screen and (max-height: 800px) {
+  html {
+    font-size: 18px;
+  }
+}
+@media only screen and (max-height: 650px) {
+  html {
+    font-size: 15px;
+  }
+}
+@media only screen and (max-height: 500px) {
+  html {
+    font-size: 12px;
+  }
+}
 
 * {
   box-sizing: border-box;
@@ -55,8 +70,8 @@ h1 {
 
 .heading {
   font-size: 0.8rem;
-  margin-top: 3rem;
-  margin-bottom: 3rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 .heading > * {
   margin: 1rem;
