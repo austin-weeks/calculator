@@ -1,16 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Poetsen+One&display=swap');
+
 :root {
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     line-height: 1.5;
     font-weight: 400;
 
-    color-scheme: light dark;
-    color: rgba(255, 255, 255, 0.87);
-    background-color: #242424;
+    // color-scheme: light dark;
+    // color: rgba(255, 255, 255, 0.87);
+    // background-color: #242424;
 
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+
+    color: #213547;
+    background-color: #ffffff;
+    // @media (prefers-color-scheme: light) {
+    // }
+}
+html {
+    font-size: 20px;
+}
+* {
+    box-sizing: border-box;
 }
 
 a {
@@ -25,95 +38,107 @@ a:hover {
 
 body {
     margin: 0;
-    display: flex;
-    place-items: center;
-    min-width: 320px;
-    min-height: 100vh;
 }
 
 h1 {
     font-size: 3.2em;
     line-height: 1.1;
 }
-
-button {
-    border-radius: 8px;
-    border: 1px solid transparent;
-    padding: 0.6em 1.2em;
-    font-size: 1em;
-    font-weight: 500;
-    font-family: inherit;
-    background-color: #1a1a1a;
-    cursor: pointer;
-    transition: border-color 0.25s;
-}
-
-button:hover {
-    border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-    outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-    :root {
-        color: #213547;
-        background-color: #ffffff;
+.heading {
+    font-size: .8rem;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    > * {
+        margin: 1rem;
     }
-
-    a:hover {
-        color: #747bff;
-    }
-
-    button {
-        background-color: #f9f9f9;
-    }
+}
+.react-logo {
+    position: relative;
+    top: .4em;
+    margin: 0 .2em;
+    transform: scale(1.1);
 }
 
 #root {
-    max-width: 1280px;
     margin: 0 auto;
-    padding: 2rem;
+    padding: 0 1rem;
     text-align: center;
 }
 
-.logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
-    transition: filter 300ms;
-}
+$calculator-background: rgb(73, 82, 86);
 
-.logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
-}
+$calculator-button: rgb(178, 189, 194);
+$calculator-button-highlight: rgb(164, 176, 182);
+$calculator-button-pressed: rgb(128, 136, 140);
 
-.logo.react:hover {
-    filter: drop-shadow(0 0 2em #61dafbaa);
-}
+$calculator-screen: black;
+$screen-font: rgba(255, 255, 255, 0.87);
+$radius: 0.4rem;
 
-@keyframes logo-spin {
-    from {
-        transform: rotate(0deg);
+#calculator {
+    background-color: $calculator-background;
+    margin: 0 auto;
+    width: 17rem;
+    border: 3px solid ;
+
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    box-shadow: 0 .13rem;
+    border-radius: .4rem;
+}
+#calc-screen {
+    display: flex;
+    flex-direction: column;
+    padding: .3em;
+    > * {
+        background-color: $calculator-screen;
+        color: $screen-font;
+        font-family: 'Orbitron';
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding-right: 0.5em;
+        border: 3px solid;
     }
-
-    to {
-        transform: rotate(360deg);
+    :first-child {
+        height: 2rem;
+        border-bottom: none;
+        border-top-left-radius: $radius;
+        border-top-right-radius: $radius;
+    }
+    :last-child {
+        height: 3rem;
+        border-top: 2px solid;
+        border-bottom-left-radius: $radius;
+        border-bottom-right-radius: $radius;
     }
 }
+#calc-buttons {
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr 3fr;
+    gap: .25rem;
+    padding: .3rem;
+}
+.calc-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: .3em;
+    background-color: $calculator-button;
+    font-size: 2rem;
 
-@media (prefers-reduced-motion: no-preference) {
-    a:nth-of-type(2) .logo {
-        animation: logo-spin infinite 20s linear;
+    border-radius: .4rem;
+    box-shadow: 0 .13rem;
+
+    &:hover {
+        cursor: pointer;
+        background-color: $calculator-button-highlight;
+    }
+    &:active {
+        background-color: $calculator-button-pressed;
     }
 }
-
-.card {
-    padding: 2em;
-}
-
-.read-the-docs {
-    color: #888;
+#clear {
+    grid-column: 3 / 5;
 }

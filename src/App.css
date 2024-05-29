@@ -1,14 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Poetsen+One&display=swap");
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: #213547;
+  background-color: #ffffff;
+}
+
+html {
+  font-size: 20px;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 a {
@@ -23,10 +31,6 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
 }
 
 h1 {
@@ -34,78 +38,93 @@ h1 {
   line-height: 1.1;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+.heading {
+  font-size: 0.8rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+.heading > * {
+  margin: 1rem;
 }
 
-button:hover {
-  border-color: #646cff;
+.react-logo {
+  position: relative;
+  top: 0.4em;
+  margin: 0 0.2em;
+  transform: scale(1.1);
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
 #root {
-  max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0 1rem;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+#calculator {
+  background-color: rgb(73, 82, 86);
+  margin: 0 auto;
+  width: 17rem;
+  border: 3px solid;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  box-shadow: 0 0.13rem;
+  border-radius: 0.4rem;
 }
 
-.logo:hover {
-  filter: drop-shadow(0 0 2em rgba(100, 108, 255, 0.6666666667));
+#calc-screen {
+  display: flex;
+  flex-direction: column;
+  padding: 0.3em;
+}
+#calc-screen > * {
+  background-color: black;
+  color: rgba(255, 255, 255, 0.87);
+  font-family: "Orbitron";
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 0.5em;
+  border: 3px solid;
+}
+#calc-screen :first-child {
+  height: 2rem;
+  border-bottom: none;
+  border-top-left-radius: 0.4rem;
+  border-top-right-radius: 0.4rem;
+}
+#calc-screen :last-child {
+  height: 3rem;
+  border-top: 2px solid;
+  border-bottom-left-radius: 0.4rem;
+  border-bottom-right-radius: 0.4rem;
 }
 
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em rgba(97, 218, 251, 0.6666666667));
+#calc-buttons {
+  display: grid;
+  grid-template-columns: 2fr 2fr 2fr 3fr;
+  gap: 0.25rem;
+  padding: 0.3rem;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.calc-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.3em;
+  background-color: rgb(178, 189, 194);
+  font-size: 2rem;
+  border-radius: 0.4rem;
+  box-shadow: 0 0.13rem;
 }
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.calc-button:hover {
+  cursor: pointer;
+  background-color: rgb(164, 176, 182);
 }
-.card {
-  padding: 2em;
+.calc-button:active {
+  background-color: rgb(128, 136, 140);
 }
 
-.read-the-docs {
-  color: #888;
+#clear {
+  grid-column: 3/5;
 }/*# sourceMappingURL=App.css.map */
