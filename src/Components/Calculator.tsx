@@ -1,15 +1,44 @@
+import { useState } from "react";
 import { ButtonInfo, buttons } from "./button-info";
 
-function CalcButton({ id, display }: ButtonInfo) {
+interface CalcButtonProps {
+    buttoninfo: ButtonInfo;
+    onClick: (value: string) => void;
+}
+function CalcButton({ buttoninfo, onClick }: CalcButtonProps) {
     return (
-        <div id={id} className="calc-button">
-            {display}
+        <div id={buttoninfo.id} className="calc-button" onClick={() => onClick(buttoninfo.value)}>
+            {buttoninfo.display}
         </div>
     );
 }
 
 
 function Calculator() {
+    const startingState =  {
+        allInput: "",
+    }
+    const [state, setState] = useState(startingState);
+
+    function onClick(value: string) {
+        switch (value) {
+            case "_":
+                break;
+            case "=":
+                break;
+            case "-":
+                break;
+            case "+":
+                break;
+            case "*":
+                break;
+            case "/":
+                break;
+            default:
+                break;
+        }
+    }
+
     return (
         <div id="calculator">
             <div id="calc-screen">
@@ -21,9 +50,9 @@ function Calculator() {
                 </div>
             </div>
             <div id="calc-buttons">
-                {buttons.map((el, ind) => {
+                {buttons.map(el => {
                     return (
-                        <CalcButton id={el.id} display={el.display} order={el.order} />
+                        <CalcButton buttoninfo={el} onClick={onClick} />
                     );
                 })}
             </div>
