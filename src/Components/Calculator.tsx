@@ -13,31 +13,41 @@ function CalcButton({ buttoninfo, onClick }: CalcButtonProps) {
     );
 }
 
+function calculate(entities: string[]): string {
+    console.log(entities);
+    return "answer";
+}
+
 
 function Calculator() {
     const startingState = {
         allInput: "",
         prevValue: "",
+        prevEntity: "",
         prevType: ValueType.Null,
-        currInput: "0"
+        currInput: "0",
+        entities: [""]
     }
     const [state, setState] = useState(startingState);
 
     function onClick(value: string, type: ValueType) {
+        //If previous input was to compute answer, we will first clear state.
         if (state.prevType === ValueType.Compute) setState(startingState);
+
+        //If user clicked clear btn, clear state and return.
         if (type === ValueType.Clear) {
             setState(startingState);
             return;
         }
-        //Conditions we need to check!!!!
-        //Cannot have two operands in a row
+
+        //Checking various conditions.
         //Decimal must have a value after
         let appendAllInput = !(state.allInput === "" && value === "0");
 
         const numOrDec = state.prevType === ValueType.Number || state.prevType === ValueType.Decimal;
         let appendCurrInput = (numOrDec && state.currInput !== "0") && (type === ValueType.Number || type === ValueType.Decimal);
-        //Decimals must be followed by a number input.
-        //Maybe figure out a way to just ignore it then? Might not be necessary...
+
+        let completeEntity = false;
         if (state.prevType === ValueType.Decimal && type !== ValueType.Number) return;
 
         switch (type) {
@@ -49,12 +59,14 @@ function Calculator() {
                 break;
             case ValueType.Compute:
                 if (!numOrDec) return;
-                const result = "aswr";
+                const result = calculate(state.entities);
                 setState(prev => ({
                     allInput : prev.allInput + "=" + result,
                     prevValue: "",
+                    prevEntity: "",
                     prevType: ValueType.Compute,
-                    currInput: result
+                    currInput: result,
+                    entities: []
                 }));
                 return;
         }
@@ -62,7 +74,9 @@ function Calculator() {
                 allInput: appendAllInput ? prev.allInput + value : "",
                 prevValue: value,
                 prevType: type,
-                currInput: appendCurrInput ? prev.currInput + value : value
+                prevEntity: completeEntity ? "" : prev.prevEntity,
+                currInput: appendCurrInput ? prev.currInput + value : value,
+                entities: completeEntity ? [...prev.entities, prev.prevEntity] : prev.entities
             }));
     }
 
