@@ -15,8 +15,6 @@ function CalcButton({ buttoninfo, onClick }: CalcButtonProps) {
 }
 
 function calculateResult(input: string): string {
-    console.log(input);
-    
     //Dissecting input string into operand and digit group sections.
     const operands = /[+|\-|/|*]/g;
     const operandMatches = [...input.matchAll(operands)];
@@ -88,7 +86,6 @@ function calculateResult(input: string): string {
 function Calculator() {
     const startingState = {
         allInput: "",
-        prevValue: "",
         prevType: ValueType.Null,
         currInput: "0"
     }
@@ -127,7 +124,6 @@ function Calculator() {
                 const result = calculateResult(state.allInput);
                 setState(prev => ({
                     allInput : prev.allInput + "=" + result,
-                    prevValue: "",
                     prevType: ValueType.Compute,
                     currInput: result
                 }));
@@ -135,7 +131,6 @@ function Calculator() {
         }
         setState(prev => ({
                 allInput: appendToAllInput ? prev.allInput + value : "",
-                prevValue: value,
                 prevType: type,
                 currInput: appendOrReplaceCurrInput ? prev.currInput + value : value,
             }));
